@@ -127,6 +127,33 @@ public class AdmissionServiceImpl implements AdmissionService {
         return JasperExportManager.exportReportToPdf(jasperPrint);
     }
 
+    @Override
+    public byte[] newGenerateFinalAdmissionForm(Long id) throws JRException {
+        String resourceDir = System.getProperty("user.dir")+"\\src\\main\\resources\\reports\\";
+        Path finalPath = Paths.get(resourceDir,"FinalAdmissionForm1.jrxml");
+        Path coursePath = Paths.get(resourceDir,"CourseAndInstitutionPreference.jrxml");
+        JasperReport finalReport = JasperCompileManager.compileReport(finalPath.toString());
+        JasperReport courseReport = JasperCompileManager.compileReport(coursePath.toString());
+        StudentDetail studentDetail = studentDetailRepository.findById(id).orElseThrow(()->new EntityNotFoundException("Student Detail Not Found"));
+        JRBeanCollectionDataSource studentDataSource = new JRBeanCollectionDataSource(Collections.singletonList(studentDetail));
+        Map<String,Object> data = new HashMap<>();
+        for (Field field : studentDetail.getClass().getDeclaredFields()) {
+            field.setAccessible(true);
+            try {
+                data.put(field.getName(), field.get(studentDetail));
+            } catch (IllegalAccessException e) {
+                throw new JRRuntimeException(e);
+            }
+        }
+        data.put("academicQualificationList", studentDetail.getAcademicQualificationList());
+        data.put("coursePreferenceList", studentDetail.getCoursePreferenceList());
+        data.put("courseInstitutionReport", courseReport);
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("data", data);
+        JasperPrint  jasperPrint = JasperFillManager.fillReport(finalReport,parameters,studentDataSource);
+        return JasperExportManager.exportReportToPdf(jasperPrint);
+    }
+
     private String saveFile(MultipartFile file) throws IOException {
         String uploadDir = System.getProperty("user.dir")+"\\src\\main\\resources\\webapp\\images\\";
         Files.createDirectories(Paths.get(uploadDir));

@@ -56,9 +56,18 @@ public class AdmissionController {
         return admissionService.getStudentDetailById(id);
     }
 
-    @PostMapping("/generateAdmissionForm/{id}")
+    @GetMapping("/generateAdmissionForm/{id}")
     public HttpEntity<byte[]> generateAdmissionForm(@PathVariable Long id) throws JRException {
         byte[] admissionForm = admissionService.generateFinalAdmissionForm(id);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_PDF);
+        headers.setContentDispositionFormData("attachment","Final Application Form.pdf");
+        return new HttpEntity<>(admissionForm,headers);
+    }
+
+    @GetMapping("/generateNewAdmissionForm/{id}")
+    public HttpEntity<byte[]> generateNewAdmissionForm(@PathVariable Long id) throws JRException {
+        byte[] admissionForm = admissionService.newGenerateFinalAdmissionForm(id);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_PDF);
         headers.setContentDispositionFormData("attachment","Final Application Form.pdf");

@@ -29,4 +29,6 @@ public interface AdmissionService {
 
     byte[] generateFinalAdmissionForm(Long id) throws JRException;
 
+    byte[] newGenerateFinalAdmissionForm(Long id) throws JRException;
+
 }

@@ -84,6 +84,18 @@ public class StudentDetail {
     @JsonIgnore
     private List<CoursePreference> coursePreferenceList;
 
+    private String dobProof;
+
+    private String tenthProof;
+
+    private String twelfthProof;
+
+    private String graduationProof;
+
+    private String photoProof;
+
+    private String disabilityProof;
+
     private String paymentStatus;
 
 }
