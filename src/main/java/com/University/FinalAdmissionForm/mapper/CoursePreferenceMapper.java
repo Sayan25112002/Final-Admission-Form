@@ -10,7 +10,7 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface CoursePreferenceMapper {
 
-    CoursePreference toCoursePreferenceDto(CoursePreferenceRequestDto coursePreferenceRequestDto);
+    CoursePreference toCoursePreference(CoursePreferenceRequestDto coursePreferenceRequestDto);
 
     CoursePreferenceResponseDto toCoursePreferenceResponseDto(CoursePreference coursePreference);
 
