@@ -87,8 +87,13 @@ public class AdmissionServiceImpl implements AdmissionService {
     @Override
     public List<StudentDetailResponseDto> getAllStudentDetails() {
         List<StudentDetail> studentDetailList = studentDetailRepository.findAll();
-        List<StudentDetail> savedStudentDetailList = studentDetailRepository.saveAll(studentDetailList);
-        return studentDetailMapper.toStudentDetailResponseDtoList(savedStudentDetailList);
+        return studentDetailMapper.toStudentDetailResponseDtoList(studentDetailList);
+    }
+
+    @Override
+    public StudentDetailResponseDto getStudentDetailById(Long studentDetailId) {
+        StudentDetail studentDetail = studentDetailRepository.findById(studentDetailId).orElseThrow(()->new EntityNotFoundException("Student Detail Not Found"));
+        return studentDetailMapper.toStudentDetailResponseDto(studentDetail);
     }
 
     private String saveFile(MultipartFile file) throws IOException {

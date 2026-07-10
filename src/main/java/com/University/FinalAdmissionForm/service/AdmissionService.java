@@ -24,4 +24,6 @@ public interface AdmissionService {
 
     List<StudentDetailResponseDto> getAllStudentDetails();
 
+    StudentDetailResponseDto getStudentDetailById(Long studentDetailId);
+
 }

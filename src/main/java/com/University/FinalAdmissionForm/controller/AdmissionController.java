@@ -47,4 +47,8 @@ public class AdmissionController {
         return admissionService.getAllStudentDetails();
     }
 
+    @GetMapping("/getStudentDetail/{id}")
+    public StudentDetailResponseDto getStudentDetail(@PathVariable Long id){
+        return admissionService.getStudentDetailById(id);
+    }
 }
