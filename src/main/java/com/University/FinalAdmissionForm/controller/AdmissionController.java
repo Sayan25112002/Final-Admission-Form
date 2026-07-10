@@ -10,6 +10,10 @@ import com.University.FinalAdmissionForm.dto.responseDto.InstitutionPreferenceRe
 import com.University.FinalAdmissionForm.dto.responseDto.StudentDetailResponseDto;
 import com.University.FinalAdmissionForm.service.AdmissionService;
 import lombok.RequiredArgsConstructor;
+import net.sf.jasperreports.engine.JRException;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -50,5 +54,14 @@ public class AdmissionController {
     @GetMapping("/getStudentDetail/{id}")
     public StudentDetailResponseDto getStudentDetail(@PathVariable Long id){
         return admissionService.getStudentDetailById(id);
+    }
+
+    @PostMapping("/generateAdmissionForm/{id}")
+    public HttpEntity<byte[]> generateAdmissionForm(@PathVariable Long id) throws JRException {
+        byte[] admissionForm = admissionService.generateFinalAdmissionForm(id);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_PDF);
+        headers.setContentDispositionFormData("attachment","Final Application Form.pdf");
+        return new HttpEntity<>(admissionForm,headers);
     }
 }

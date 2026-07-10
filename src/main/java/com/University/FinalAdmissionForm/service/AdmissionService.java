@@ -8,6 +8,7 @@ import com.University.FinalAdmissionForm.dto.responseDto.AcademicQualificationRe
 import com.University.FinalAdmissionForm.dto.responseDto.CoursePreferenceResponseDto;
 import com.University.FinalAdmissionForm.dto.responseDto.InstitutionPreferenceResponseDto;
 import com.University.FinalAdmissionForm.dto.responseDto.StudentDetailResponseDto;
+import net.sf.jasperreports.engine.JRException;
 
 import java.io.IOException;
 import java.util.List;
@@ -25,5 +26,7 @@ public interface AdmissionService {
     List<StudentDetailResponseDto> getAllStudentDetails();
 
     StudentDetailResponseDto getStudentDetailById(Long studentDetailId);
+
+    byte[] generateFinalAdmissionForm(Long id) throws JRException;
 
 }
