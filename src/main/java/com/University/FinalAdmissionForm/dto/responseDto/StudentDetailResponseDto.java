@@ -1,19 +1,18 @@
-package com.University.FinalAdmissionForm.entity;
+package com.University.FinalAdmissionForm.dto.responseDto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-@Entity
-@Getter
-@Setter
-public class StudentDetail {
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class StudentDetailResponseDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String universityLogo;
@@ -76,13 +75,9 @@ public class StudentDetail {
 
     private String collegeLastAttended;
 
-    @OneToMany(mappedBy = "studentDetail")
-    @JsonIgnore
-    private List<AcademicQualification> academicQualificationList;
+    private List<AcademicQualificationResponseDto> academicQualificationList;
 
-    @OneToMany(mappedBy = "studentDetail")
-    @JsonIgnore
-    private List<CoursePreference> coursePreferenceList;
+    private List<CoursePreferenceResponseDto> coursePreferenceList;
 
     private String paymentStatus;
 

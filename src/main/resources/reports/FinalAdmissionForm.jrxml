@@ -72,9 +72,9 @@
     <parameter name="address" class="java.lang.String"/>
     <parameter name="universityLastAttended" class="java.lang.String"/>
     <parameter name="collegeLastAttended" class="java.lang.String"/>
-    <parameter name="examinationDetailList" class="java.util.List"/>
+    <parameter name="academicQualificationList" class="java.util.List"/>
     <parameter name="courseInstitutionReport" class="net.sf.jasperreports.engine.JasperReport"/>
-    <parameter name="courseInstitutionList" class="java.util.List"/>
+    <parameter name="coursePreferenceList" class="java.util.List"/>
     <parameter name="uploadProof" class="java.lang.String"/>
     <parameter name="paymentStatus" class="java.lang.String"/>
     <queryString>
@@ -888,7 +888,7 @@
                     <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#A8A2BA"/>
                 </box>
                 <textElement verticalAlignment="Middle"/>
-                <textFieldExpression><![CDATA[$P{dateOfBirth}]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$P{state}]]></textFieldExpression>
             </textField>
             <staticText>
                 <reportElement mode="Opaque" x="277" y="130" width="139" height="30" backcolor="#F5FBFF" uuid="5e057dc4-6877-4d00-9ce3-83d0296d3211">
@@ -916,7 +916,7 @@
                     <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#A8A2BA"/>
                 </box>
                 <textElement verticalAlignment="Middle"/>
-                <textFieldExpression><![CDATA[$P{gender}]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$P{country}]]></textFieldExpression>
             </textField>
         </band>
         <band height="120">
@@ -1328,7 +1328,7 @@
                 </reportElement>
                 <jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
                     <datasetRun subDataset="examDataSet" uuid="92e099ae-460e-4af2-817d-1f83adec3e8e">
-                        <dataSourceExpression><![CDATA[$P{examinationDetailList}]]></dataSourceExpression>
+                        <dataSourceExpression><![CDATA[$P{academicQualificationList}]]></dataSourceExpression>
                     </datasetRun>
                     <jr:column width="135" uuid="08651dc1-b484-48ae-ae6f-61daebd0f0e4">
                         <property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
@@ -1536,7 +1536,7 @@
                 <reportElement x="0" y="40" width="555" height="140" uuid="795d3ee4-063f-4a95-b224-633d1fedac69">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <dataSourceExpression><![CDATA[$P{courseInstitutionList}]]></dataSourceExpression>
+                <dataSourceExpression><![CDATA[$P{coursePreferenceList}]]></dataSourceExpression>
                 <subreportExpression><![CDATA[$P{courseInstitutionReport}]]></subreportExpression>
             </subreport>
         </band>

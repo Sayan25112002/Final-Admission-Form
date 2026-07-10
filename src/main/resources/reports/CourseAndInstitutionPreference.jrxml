@@ -41,7 +41,7 @@
     </queryString>
     <field name="appliedCourse" class="java.lang.String"/>
     <field name="subjectApplied" class="java.lang.String"/>
-    <field name="institutionDetailList" class="java.util.List"/>
+    <field name="institutionPreferenceList" class="java.util.List"/>
     <background>
         <band splitType="Stretch"/>
     </background>
@@ -165,7 +165,7 @@
                 </reportElement>
                 <jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
                     <datasetRun subDataset="institutionDataSet" uuid="8e316fea-0353-4ee2-8653-a3f8f8ca0a83">
-                        <dataSourceExpression><![CDATA[$F{institutionDetailList}]]></dataSourceExpression>
+                        <dataSourceExpression><![CDATA[$F{institutionPreferenceList}]]></dataSourceExpression>
                     </datasetRun>
                     <jr:column width="180" uuid="53293cee-d0eb-4986-ad4b-76dc59d0e4d6">
                         <property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
