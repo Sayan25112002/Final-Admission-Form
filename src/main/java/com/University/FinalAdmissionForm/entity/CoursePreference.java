@@ -21,7 +21,7 @@ public class CoursePreference {
     private String subjectApplied;
 
     @ManyToOne
-    @JoinColumn(name = "coursePreferenceId")
+    @JoinColumn(name = "studentDetailId")
     @JsonIgnore
     private StudentDetail studentDetail;
 
