@@ -15,6 +15,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
@@ -27,6 +28,7 @@ public class AdmissionController {
 
     @PostMapping("/createStudentDetail")
     public StudentDetailResponseDto createStudentDetail(@ModelAttribute StudentDetailRequestDto studentDetailRequestDto) throws IOException {
+        System.out.println("Controller reached");
         return admissionService.createStudentDetail(studentDetailRequestDto);
     }
 
@@ -54,15 +56,6 @@ public class AdmissionController {
     @GetMapping("/getStudentDetail/{id}")
     public StudentDetailResponseDto getStudentDetail(@PathVariable Long id){
         return admissionService.getStudentDetailById(id);
-    }
-
-    @GetMapping("/generateAdmissionForm/{id}")
-    public HttpEntity<byte[]> generateAdmissionForm(@PathVariable Long id) throws JRException {
-        byte[] admissionForm = admissionService.generateFinalAdmissionForm(id);
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_PDF);
-        headers.setContentDispositionFormData("attachment","Final Application Form.pdf");
-        return new HttpEntity<>(admissionForm,headers);
     }
 
     @GetMapping("/generateNewAdmissionForm/{id}")

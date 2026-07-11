@@ -29,7 +29,11 @@ public class StudentDetailResponseDto {
 
     private String fatherName;
 
+    private String fatherOccupation;
+
     private String motherName;
+
+    private String motherOccupation;
 
     private String dateOfBirth;
 
@@ -41,9 +45,19 @@ public class StudentDetailResponseDto {
 
     private String category;
 
+    private String certificateNumber;
+
+    private String issueDate;
+
+    private String issueAuthority;
+
+    private String subCast;
+
     private String bloodGroup;
 
     private String differentlyAbled;
+
+    private String disabilityPercentage;
 
     private String aadharCardNumber;
 
@@ -75,6 +89,12 @@ public class StudentDetailResponseDto {
 
     private String collegeLastAttended;
 
+    private String appliedMedium;
+
+    private String previousCurriculum;
+
+    private String courseCredit;
+
     private List<AcademicQualificationResponseDto> academicQualificationList;
 
     private List<CoursePreferenceResponseDto> coursePreferenceList;
@@ -92,5 +112,13 @@ public class StudentDetailResponseDto {
     private String disabilityProof;
 
     private String paymentStatus;
+
+    private String amount;
+
+    private String paymentDate;
+
+    private String transactionId;
+
+    private String signature;
 
 }

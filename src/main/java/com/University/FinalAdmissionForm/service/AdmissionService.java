@@ -27,8 +27,6 @@ public interface AdmissionService {
 
     StudentDetailResponseDto getStudentDetailById(Long studentDetailId);
 
-    byte[] generateFinalAdmissionForm(Long id) throws JRException;
-
     byte[] newGenerateFinalAdmissionForm(Long id) throws JRException;
 
 }

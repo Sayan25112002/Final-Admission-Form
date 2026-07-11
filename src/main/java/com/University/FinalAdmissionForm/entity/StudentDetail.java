@@ -30,7 +30,11 @@ public class StudentDetail {
 
     private String fatherName;
 
+    private String fatherOccupation;
+
     private String motherName;
+
+    private String motherOccupation;
 
     private String dateOfBirth;
 
@@ -42,9 +46,19 @@ public class StudentDetail {
 
     private String category;
 
+    private String certificateNumber;
+
+    private String issueDate;
+
+    private String issueAuthority;
+
+    private String subCast;
+
     private String bloodGroup;
 
     private String differentlyAbled;
+
+    private String disabilityPercentage;
 
     private String aadharCardNumber;
 
@@ -76,6 +90,12 @@ public class StudentDetail {
 
     private String collegeLastAttended;
 
+    private String appliedMedium;
+
+    private String previousCurriculum;
+
+    private String courseCredit;
+
     @OneToMany(mappedBy = "studentDetail")
     @JsonIgnore
     private List<AcademicQualification> academicQualificationList;
@@ -97,5 +117,13 @@ public class StudentDetail {
     private String disabilityProof;
 
     private String paymentStatus;
+
+    private String amount;
+
+    private String paymentDate;
+
+    private String transactionId;
+
+    private String signature;
 
 }

@@ -54,7 +54,9 @@ public class AdmissionServiceImpl implements AdmissionService {
     @Override
     public StudentDetailResponseDto createStudentDetail(StudentDetailRequestDto studentDetailRequestDto) throws IOException {
         String universityFilePath = saveFile(studentDetailRequestDto.getUniversityLogoFile());
+        String signatureFilePath = saveFile(studentDetailRequestDto.getSignatureFile());
         studentDetailRequestDto.setUniversityLogo(universityFilePath);
+        studentDetailRequestDto.setSignature(signatureFilePath);
         StudentDetail studentDetail = studentDetailMapper.toStudentDetail(studentDetailRequestDto);
         StudentDetail savedStudentDetail = studentDetailRepository.save(studentDetail);
         return studentDetailMapper.toStudentDetailResponseDto(savedStudentDetail);
@@ -100,31 +102,6 @@ public class AdmissionServiceImpl implements AdmissionService {
     public StudentDetailResponseDto getStudentDetailById(Long studentDetailId) {
         StudentDetail studentDetail = studentDetailRepository.findById(studentDetailId).orElseThrow(()->new EntityNotFoundException("Student Detail Not Found"));
         return studentDetailMapper.toStudentDetailResponseDto(studentDetail);
-    }
-
-    @Override
-    public byte[] generateFinalAdmissionForm(Long id) throws JRException {
-        String resourceDir = System.getProperty("user.dir")+"\\src\\main\\resources\\reports\\";
-        Path finalPath = Paths.get(resourceDir,"FinalAdmissionForm.jrxml");
-        Path coursePath = Paths.get(resourceDir,"CourseAndInstitutionPreference.jrxml");
-        JasperReport finalReport = JasperCompileManager.compileReport(finalPath.toString());
-        JasperReport courseReport = JasperCompileManager.compileReport(coursePath.toString());
-        StudentDetail studentDetail = studentDetailRepository.findById(id).orElseThrow(()->new EntityNotFoundException("Student Detail Not Found"));
-        JRBeanCollectionDataSource studentDataSource = new JRBeanCollectionDataSource(Collections.singletonList(studentDetail));
-        Map<String,Object> parameters = new HashMap<>();
-        for (Field field : studentDetail.getClass().getDeclaredFields()) {
-            field.setAccessible(true);
-            try {
-                parameters.put(field.getName(), field.get(studentDetail));
-            } catch (IllegalAccessException e) {
-                throw new JRRuntimeException(e);
-            }
-        }
-        parameters.put("academicQualificationList", studentDetail.getAcademicQualificationList());
-        parameters.put("coursePreferenceList", studentDetail.getCoursePreferenceList());
-        parameters.put("courseInstitutionReport", courseReport);
-        JasperPrint  jasperPrint = JasperFillManager.fillReport(finalReport,parameters,studentDataSource);
-        return JasperExportManager.exportReportToPdf(jasperPrint);
     }
 
     @Override

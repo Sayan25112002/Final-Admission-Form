@@ -28,7 +28,11 @@ public class StudentDetailRequestDto {
 
     private String fatherName;
 
+    private String fatherOccupation;
+
     private String motherName;
+
+    private String motherOccupation;
 
     private String dateOfBirth;
 
@@ -40,9 +44,19 @@ public class StudentDetailRequestDto {
 
     private String category;
 
+    private String certificateNumber;
+
+    private String issueDate;
+
+    private String issueAuthority;
+
+    private String subCast;
+
     private String bloodGroup;
 
     private String differentlyAbled;
+
+    private String disabilityPercentage;
 
     private String aadharCardNumber;
 
@@ -74,6 +88,12 @@ public class StudentDetailRequestDto {
 
     private String collegeLastAttended;
 
+    private String appliedMedium;
+
+    private String previousCurriculum;
+
+    private String courseCredit;
+
     private String dobProof;
 
     private String tenthProof;
@@ -87,5 +107,15 @@ public class StudentDetailRequestDto {
     private String disabilityProof;
 
     private String paymentStatus;
+
+    private String amount;
+
+    private String paymentDate;
+
+    private String transactionId;
+
+    private MultipartFile signatureFile;
+
+    private String signature;
 
 }
